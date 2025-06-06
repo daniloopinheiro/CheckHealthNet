@@ -53,6 +53,14 @@ Principais funcionalidades:
 * [Docker](https://www.docker.com/) (opcional)
 * [Git](https://git-scm.com/)
 
+### Instalar pacote NuGet
+
+Antes de rodar o projeto ou usar as funcionalidades de verificação de integridade do sistema, instale o pacote necessário:
+
+```bash
+dotnet add package AspNetCore.HealthChecks.System
+```
+
 ### Passos
 
 1. Clone o repositório:
