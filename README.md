@@ -1,178 +1,167 @@
-# Descrição
+# 🩺 CheckHealthNet
 
-Este é um projeto de software que tem como objetivo [inserir objetivo principal do projeto, ex: resolver um problema específico, automatizar um processo, fornecer uma funcionalidade]. Ele foi desenvolvido utilizando [listar tecnologias e ferramentas principais, ex: .NET, RabbitMQ, MongoDB, etc.] e segue uma arquitetura [ex: MVC, DDD, microserviços, etc.] para garantir [escabilidade, desempenho, manutenibilidade, etc.].
-
----
-
-## Índice
-
-- [Visão Geral](#visão-geral)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Instalação](#instalação)
-- [Como Usar](#como-usar)
-- [Estrutura de Diretórios](#estrutura-de-diretórios)
-- [Configuração](#configuração)
-- [Contribuições](#contribuições)
-- [Licença](#licença)
-- [Contato](#contato)
+Este é um projeto de software que tem como objetivo **monitorar a integridade de recursos de sistema e serviços** em aplicações ASP.NET Core utilizando a API `HealthChecks` integrada e a poderosa biblioteca `AspNetCore.HealthChecks.System`. Ele foi desenvolvido utilizando **.NET 8**, **Docker** e segue uma arquitetura **modular e extensível**, garantindo **observabilidade, manutenibilidade e escalabilidade**.
 
 ---
 
-## Visão Geral
+## 📚 Índice
 
-Este projeto visa [explicar em poucas palavras o propósito do software e o valor que ele agrega]. Ele oferece as seguintes funcionalidades principais:
-
-- **Funcionalidade 1**: [Descrição breve da funcionalidade]
-- **Funcionalidade 2**: [Descrição breve da funcionalidade]
-- **Funcionalidade 3**: [Descrição breve da funcionalidade]
-
-A arquitetura do projeto segue [exemplo: Domain-Driven Design (DDD)], o que garante [benefícios como flexibilidade, escalabilidade, etc.].
-
----
-
-## Tecnologias Utilizadas
-
-Este projeto foi desenvolvido com as seguintes tecnologias:
-
-- **Tecnologia 1**: [Descrição da tecnologia 1, ex: .NET 8, Java, etc.]
-- **Tecnologia 2**: [Descrição da tecnologia 2, ex: RabbitMQ, MySQL, etc.]
-- **Tecnologia 3**: [Descrição da tecnologia 3, ex: Docker, Kubernetes, etc.]
+* [Visão Geral](#visão-geral)
+* [Tecnologias Utilizadas](#tecnologias-utilizadas)
+* [Instalação](#instalação)
+* [Como Usar](#como-usar)
+* [Estrutura de Diretórios](#estrutura-de-diretórios)
+* [Configuração](#configuração)
+* [Contribuições](#contribuições)
+* [Licença](#licença)
+* [Contato](#contato)
 
 ---
 
-## Instalação
+## 👀 Visão Geral
+
+O **CheckHealthNet** fornece endpoints HTTP para monitoramento em tempo real da saúde de serviços e recursos do sistema, como:
+
+* **CPU**
+* **Memória**
+* **Espaço em disco**
+* **Tempo de atividade (uptime)**
+
+Principais funcionalidades:
+
+* **Health check configurável** com limites de uso por recurso
+* **Pronto para Prometheus/Kubernetes**
+* **Arquitetura limpa e extensível**
+
+---
+
+## 🛠 Tecnologias Utilizadas
+
+* **.NET 8** – Plataforma principal de desenvolvimento
+* **AspNetCore.HealthChecks.System** – Biblioteca para monitoramento de sistema
+* **Docker** – Containerização e execução local/padrão para nuvem
+* **Swagger** – Documentação interativa da API (opcional)
+* **Visual Studio Code / Rider / Visual Studio** – Ambientes recomendados
+
+---
+
+## 💾 Instalação
 
 ### Pré-requisitos
 
-Certifique-se de que você tem as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
+* [.NET SDK 8+](https://dotnet.microsoft.com/en-us/download)
+* [Docker](https://www.docker.com/) (opcional)
+* [Git](https://git-scm.com/)
 
-- **Ferramenta 1**: [Link para o download ou instrução de instalação]
-- **Ferramenta 2**: [Link para o download ou instrução de instalação]
-
-### Passos para Instalar
+### Passos
 
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-projeto.git
-   cd nome-do-projeto
+   git clone https://github.com/seu-usuario/CheckHealthNet.git
+   cd CheckHealthNet
    ```
 
-2. Instale as dependências do projeto:
-
-   Se estiver utilizando o Visual Studio ou VS Code, abra a solução e restaure os pacotes.
-
-   Ou, se estiver utilizando a linha de comando, execute:
+2. Restaure os pacotes NuGet:
 
    ```bash
    dotnet restore
    ```
 
-3. [Instrução de configuração, ex: configurar o banco de dados, variáveis de ambiente, etc.]
-
-4. Para rodar o projeto localmente, use o seguinte comando:
+3. Execute localmente:
 
    ```bash
    dotnet run
    ```
 
-   Ou, se estiver usando containers Docker, execute:
+4. Ou usando Docker:
 
    ```bash
-   docker-compose up
+   docker build -t checkhealthnet .
+   docker run -p 5000:80 checkhealthnet
    ```
 
 ---
 
-## Como Usar
+## 🚀 Como Usar
 
-Este projeto pode ser utilizado para [explicar de forma prática como o usuário pode interagir com o sistema]. Exemplos de uso:
+### Endpoint Principal
 
-1. **Endpoint 1**:
-   - **Método HTTP**: GET/POST
-   - **URL**: `/api/exemplo`
-   - **Descrição**: [Breve descrição do que esse endpoint faz]
-   
-2. **Endpoint 2**:
-   - **Método HTTP**: GET/POST
-   - **URL**: `/api/exemplo/{id}`
-   - **Descrição**: [Breve descrição do que esse endpoint faz]
+* **GET** `/health`
 
-### Exemplos de uso com cURL ou Postman
+Retorna o status geral da aplicação e dos recursos monitorados.
 
-**Requisição de exemplo**:
+#### Exemplo com `curl`:
 
 ```bash
-curl -X GET http://localhost:5000/api/exemplo -H "Content-Type: application/json"
+curl http://localhost:5000/health
 ```
 
----
-
-## Estrutura de Diretórios
-
-A estrutura do projeto segue uma organização modular e de fácil manutenção:
-
-```
-src/
-├── API/                # Camada de apresentação (controladores e endpoints da API)
-├── Application/        # Camada de lógica de negócios
-├── Domain/             # Camada de domínio (entidades e interfaces)
-├── Infrastructure/     # Camada de infraestrutura (conexões com banco, serviços, etc.)
-```
-
----
-
-## Configuração
-
-Este projeto exige algumas configurações adicionais, como variáveis de ambiente, arquivos de configuração ou serviços externos. As instruções de configuração podem ser encontradas abaixo:
-
-### Configuração do Banco de Dados
-
-1. No arquivo `appsettings.json`, adicione suas configurações de banco de dados, por exemplo:
+#### Exemplo de resposta JSON:
 
 ```json
 {
-  "DatabaseSettings": {
-    "ConnectionString": "mongodb://localhost:27017",
-    "DatabaseName": "MeuBancoDeDados"
+  "status": "Healthy",
+  "entries": {
+    "cpu": { "status": "Healthy", "description": "CPU usage is under 90%" },
+    "memory": { "status": "Healthy", "description": "Memory usage is under 85%" },
+    "disk": { "status": "Healthy", "description": "Disk usage is under 90%" },
+    "uptime": { "status": "Healthy", "description": "System uptime is above 10 minutes" }
   }
 }
 ```
 
-2. Para configuração de variáveis de ambiente, adicione as seguintes variáveis ao seu ambiente de execução:
+---
 
-```bash
-DATABASE_URL=mongodb://localhost:27017
-SECRET_KEY=alguma_chave_secreta
+## 📂 Estrutura de Diretórios
+
+```
+CheckHealthNet/
+├── Program.cs             # Configuração principal da aplicação
+├── HealthChecks/          # Classe com registro dos checks do sistema
+├── appsettings.json       # Configurações gerais
+├── Dockerfile             # Imagem da aplicação
+└── README.md              # Documentação do projeto
 ```
 
-### Configuração de API Externa (se necessário)
+---
 
-Caso o projeto dependa de APIs externas, configure as credenciais ou chaves de acesso no arquivo de configuração.
+## ⚙️ Configuração
+
+A configuração dos limites de CPU, memória, disco e uptime pode ser feita diretamente no `Program.cs`:
+
+```csharp
+options.AddCpuHealthCheck("cpu", 0.90);
+options.AddMemoryHealthCheck("memory", 0.85);
+options.AddDiskStorageHealthCheck("disk", "C:\\", 0.90);
+options.AddSystemUptimeHealthCheck("uptime", TimeSpan.FromMinutes(10));
+```
 
 ---
 
-## Contribuições
+## 🤝 Contribuições
 
-Contribuições são bem-vindas! Para contribuir com o projeto, siga estas etapas:
+Contribuições são bem-vindas!
 
-1. Faça um **fork** do repositório.
-2. Crie uma nova branch para sua feature (ex: `git checkout -b feature/nova-feature`).
-3. Faça as alterações necessárias e commit (ex: `git commit -m 'Adiciona nova-feature'`).
-4. Envie as alterações para seu repositório (ex: `git push origin feature/nova-feature`).
-5. Crie um **pull request** para a branch principal do repositório original.
-
----
-
-## Licença
-
-Este projeto está licenciado sob a Licença [Nome da Licença, ex: MIT]. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+1. Fork este repositório
+2. Crie uma branch: `git checkout -b feature/nome-da-sua-feature`
+3. Commit suas alterações: `git commit -m 'Adiciona nova funcionalidade'`
+4. Push: `git push origin feature/nome-da-sua-feature`
+5. Abra um Pull Request
 
 ---
 
-## Contato
+## 📄 Licença
 
-Caso tenha dúvidas ou sugestões, entre em contato:
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais informações.
 
-- **Email**: [dopme.io](mailto:daniloopinheiro@dopme.io)
-- **LinkedIn**: [Danilo O. Pinheiro](https://www.linkedin.com/in/daniloopinheiro/)
+---
+
+## 📬 Contato
+
+Caso tenha dúvidas, sugestões ou deseje colaborar:
+
+* **Email**: [contato@dopme.io](mailto:contato@dopme.io)
+* **LinkedIn**: [Danilo O. Pinheiro](https://www.linkedin.com/in/daniloopinheiro)
+* **Dev.to**: [@daniloopinheiro](https://dev.to/daniloopinheiro)
+* **Medium**: [@daniloopinheiro](https://medium.com/@daniloopinheiro)
