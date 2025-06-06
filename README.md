@@ -59,6 +59,9 @@ Antes de rodar o projeto ou usar as funcionalidades de verificação de integrid
 
 ```bash
 dotnet add package AspNetCore.HealthChecks.System
+dotnet add package AspNetCore.HealthChecks.UI
+dotnet add package AspNetCore.HealthChecks.UI.Client
+dotnet add package AspNetCore.HealthChecks.UI.InMemory.Storage
 ```
 
 ### Passos
