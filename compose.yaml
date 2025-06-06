@@ -1,0 +1,7 @@
+﻿services:
+  chn.api:
+    image: chn.api
+    build:
+      context: .
+      dockerfile: CHN.Api/Dockerfile
+
