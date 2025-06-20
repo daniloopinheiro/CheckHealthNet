@@ -1,5 +1,7 @@
 # 🩺 CheckHealthNet
 
+[![CheckHealthNet - CI](https://github.com/daniloopinheiro/CheckHealthNet/actions/workflows/dotnet-ci.yml/badge.svg)](https://github.com/daniloopinheiro/CheckHealthNet/actions/workflows/dotnet-ci.yml)
+
 Este é um projeto de software que tem como objetivo **monitorar a integridade de recursos de sistema e serviços** em aplicações ASP.NET Core utilizando a API `HealthChecks` integrada e a poderosa biblioteca `AspNetCore.HealthChecks.System`. Ele foi desenvolvido utilizando **.NET 8**, **Docker** e segue uma arquitetura **modular e extensível**, garantindo **observabilidade, manutenibilidade e escalabilidade**.
 
 ---
