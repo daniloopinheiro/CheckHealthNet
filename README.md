@@ -178,3 +178,7 @@ Caso tenha dúvidas, sugestões ou deseje colaborar:
 * **LinkedIn**: [Danilo O. Pinheiro](https://www.linkedin.com/in/daniloopinheiro)
 * **Dev.to**: [@daniloopinheiro](https://dev.to/daniloopinheiro)
 * **Medium**: [@daniloopinheiro](https://medium.com/@daniloopinheiro)
+
+---
+
+<p align="center"> Feito com ❤️ por <strong>Danilo O. Pinheiro</strong><br/> <a href="https://devsfree.com.br" target="_blank">DevsFree</a> • <a href="https://dopme.io" target="_blank">dopme.io</a> </p>
